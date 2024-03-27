@@ -1,0 +1,20 @@
+{% extends 'block.html' %}
+{% block title %} {{ post_detail.location }}. {{ post_detail.date }} {% endblock %}
+{% block content %}
+        <article>
+          <ul>
+            <li>
+              Место: {{ post_detail.location }}
+            </li>
+            <li>
+              Дата: {{ post_detail.date }}
+            </li>
+            <li>
+              Категория: <a href="{% url 'blog:category_posts' post_detail.category %}">post_detail.category</a>
+            </li>
+          </ul>
+          <p>
+            {{ post_detail.text|linebreaksbr }}
+          </p>
+        </article>
+{% endblock %}
