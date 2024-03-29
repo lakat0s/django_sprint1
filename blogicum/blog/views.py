@@ -1,3 +1,4 @@
+from django.http import Http404
 from django.shortcuts import render
 
 posts = [
@@ -45,22 +46,25 @@ posts = [
 
 
 def index(request):
+    """Главная страница"""
     context = {'posts': posts}
     return render(request, 'blog/index.html', context)
 
 
-def post_detail(request, id):
-    template = 'blog/detail.html'
+def post_detail(request, post_id):
+    """Полное описание выбранной записи"""
+    post = [post for post in posts if post['id'] == post_id]
+    if not post:
+        raise Http404('Записи с таким id нет')
     context = {
-        'post': posts[id]
+        'post': posts[post_id]
     }
-    return render(request, template, context)
+    return render(request, 'blog/detail.html', context)
 
 
 def category_posts(request, category_slug):
-    template = 'blog/category.html'
+    """Отображение публикаций категории"""
     context = {
-        'posts': posts,
         'category': category_slug
     }
-    return render(request, template, context)
+    return render(request, 'blog/category.html', context)
