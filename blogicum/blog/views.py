@@ -44,6 +44,10 @@ posts = [
     },
 ]
 
+posts_dict = {
+    post['id']: post for post in posts
+}
+
 
 def index(request):
     """Главная страница"""
@@ -53,7 +57,7 @@ def index(request):
 
 def post_detail(request, post_id):
     """Полное описание выбранной записи"""
-    post = [post for post in posts if post['id'] == post_id]
+    post = posts_dict
     if not post:
         raise Http404('Записи с таким id нет')
     context = {
