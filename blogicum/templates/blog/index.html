@@ -8,7 +8,7 @@
 {% block content %}
   <h1>Лента записей</h1>
   {% for post in posts|dictsortreversed:'id' %}
-      <hr>
-      {% include "blog/includes/post_description.html" %}
+    <hr>
+    {% include "blog/includes/post_description.html" %}
   {% endfor %}
 {% endblock %}

@@ -57,11 +57,10 @@ def index(request):
 
 def post_detail(request, post_id):
     """Полное описание выбранной записи"""
-    post = posts_dict
-    if not post:
+    if not posts_dict:
         raise Http404('Записи с таким id нет')
     context = {
-        'post': posts[post_id]
+        'post': posts_dict[post_id]
     }
     return render(request, 'blog/detail.html', context)
 
