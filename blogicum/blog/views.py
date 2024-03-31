@@ -57,7 +57,7 @@ def index(request):
 
 def post_detail(request, post_id):
     """Полное описание выбранной записи"""
-    if not posts_dict:
+    if post_id not in posts_dict:
         raise Http404('Записи с таким id нет')
     context = {
         'post': posts_dict[post_id]
